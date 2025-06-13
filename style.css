@@ -114,7 +114,7 @@ button {
 
 .right-panel {
 	width: 60%;
-	background: url("./image.jpg") no-repeat center center/cover;
+	background: url("img/image.jpg") no-repeat center center/cover;
 	position: relative;
 	color: white;
 }
@@ -172,9 +172,7 @@ button {
 	color: #0066ff !important;
 	width: 100px;
 }
-.small {
-	
-}
+
 /* Responsive */
 @media (max-width: 768px) {
 	.container {
