@@ -14,7 +14,7 @@
     <div class="row g-0">
 
       <!-- Left Panel -->
-      <section class="left-panel col-md-6 p-5 bg-white">
+      <section class="left-panel col-12 col-md-6 p-5 bg-white">
         <div class="d-flex justify-content-center align-items-center mb-4">
           <nav class="logo d-flex align-items-center">
             <img style="width: 3rem;" src="img/logo.png" alt="Smart Wash Logo" class="me-2" />
@@ -26,7 +26,6 @@
         <p class="text-muted mb-4">Sign in to manage your wash business and keep running smoothly</p>
 
         <form id="loginForm" novalidate>
-
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" id="email" class="form-control" placeholder="you@yourbusiness.com" required />
@@ -52,14 +51,14 @@
           </div>
 
           <p class="footer-text text-center mt-4">
-            Don’t have an account? <a href="signup.html">Create one</a>
+            Don’t have an account? <a href="signup.html">Create an account</a>
           </p>
         </form>
       </section>
 
-      <!-- Right Panel -->
+      <!-- Right Panel (Hidden on smaller screens) -->
       <section
-        class="right-panel col-md-6 d-flex align-items-center justify-content-center text-white bg-primary text-center p-5">
+        class="right-panel col-md-6 d-none d-md-flex align-items-center justify-content-center text-white bg-primary text-center p-5">
         <div class="overlay">
           <h4 class="fw-light">BUILT FOR WASH BUSINESSES LIKE YOURS</h4>
           <h1 class="fw-bold my-3">Everything You Need To Run Your Wash Business In One Place</h1>

@@ -178,9 +178,38 @@
     }
 
     .step-line {
-      flex: 1;
       height: 2px;
+      flex-grow: 1;
+      background-color: #ced4da;
+      align-self: center;
+      min-width: 30px;
+      max-width: 50px;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
       background-color: #dee2e6;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .step-circle.active {
+      background-color: #0d6efd;
+      /* Bootstrap Primary */
+      color: #fff;
+    }
+
+    .step-label {
+      font-weight: 500;
+      font-size: 15px;
+      color: #343a40;
     }
 
     .hidden {
@@ -190,82 +219,175 @@
     p {
       font-weight: 600;
     }
+
+    @media (max-width: 768px) {
+      .promo-container {
+        text-align: left;
+      }
+
+      .step-indicator {
+        flex-direction: grid;
+        align-items: center;
+      }
+
+      #step1 {
+        margin-top: 50%;
+        padding: 20px;
+      }
+
+
+      .step,
+      .step-line {
+        width: 100%;
+        text-align: center;
+      }
+
+      .form-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .promo-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .promo-header h4 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+
+      .form-control,
+      .form-select {
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        font-size: 0.9rem;
+      }
+
+      .step {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.5rem;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row w-100 h-100">
-      <div class="text-center mb-4 ">
+  <div class="container-fluid py-4 px-3">
+    <div class="row w-100 h-100 g-4">
+      <div class="col-12text-center mb-4 align-items-center d-flex flex-column">
         <img src="img/logo.png" alt="SmartWash Logo" height="40">
-        <h3 class="mt-2">SmartWash Signup</h3>
+        <h3 class="mt-2 fw-bold">SmartWash Signup</h3>
       </div>
-      <div class="step-indicator w-5">
-        <div id="step1Indicator" class="step active">1. Create Profile</div>
-        <div class="step-line"></div>
-        <div id="step2Indicator" class="step">2. Billing & Payment</div>
+
+      <!-- Step Indicator -->
+      <div
+        class="step-indicator col-12 d-flex flex-wrap justify-content-center justify-content-md-start align-items-center mb-4">
+        <div class="step-item d-flex align-items-center me-3">
+          <div id="step1Circle" class="step-circle active">1</div>
+          <span id="step1Text" class="step-label ms-2">Create Profile</span>
+        </div>
+
+        <div class="step-line mx-2"></div>
+
+        <div class="step-item d-flex align-items-center">
+          <div id="step2Circle" class="step-circle">2</div>
+          <span id="step2Text" class="step-label ms-2">Billing & Payment</span>
+        </div>
       </div>
-      <div class="col-md-6 form-container d-flex flex-column justify-content-center ">
+      <div class="col-12 col-md-6 form-container px-2 d-flex flex-column justify-content-center">
+
+
+
+        <!-- Signup Form -->
         <form id="signupForm" novalidate>
           <!-- Step 1 -->
           <div id="step1">
-            <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control"
-                id="fullName" required>
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" required>
               <div class="invalid-feedback">Please enter your full name.</div>
             </div>
-            <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" id="email"
-                required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
               <div class="invalid-feedback">Please enter a valid email address.</div>
             </div>
-            <div class="mb-3"><label class="form-label">Phone Number</label><input type="tel" class="form-control"
-                id="phoneNumber" required pattern="[0-9]{10}">
+
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phoneNumber" required pattern="[0-9]{10}">
               <div class="invalid-feedback">Please enter a 10-digit phone number.</div>
             </div>
-            <div class="mb-3"><label class="form-label">Business Name</label><input type="text" class="form-control"
-                id="businessName" required>
+
+            <div class="mb-3">
+              <label class="form-label">Business Name</label>
+              <input type="text" class="form-control" id="businessName" required>
               <div class="invalid-feedback">Please enter your business name.</div>
             </div>
+
             <div class="mb-3">
               <label class="form-label">Business Type</label>
               <select class="form-select" id="businessType" required>
                 <option value="">Select</option>
-                <option>Car Service</option>
+                <option>Car Wash Service</option>
                 <option>Laundry Service</option>
                 <option>Both</option>
               </select>
               <div class="invalid-feedback">Please select a business type.</div>
             </div>
-            <div class="mb-3"><label class="form-label">Location</label><input type="text" class="form-control"
-                id="location" required>
+
+            <div class="mb-3">
+              <label class="form-label">Location</label>
+              <input type="text" class="form-control" id="location" required>
               <div class="invalid-feedback">Please enter your location.</div>
             </div>
+
             <div class="row">
-              <div class="col-md-6 mb-3"><label class="form-label">Password</label><input type="password"
-                  class="form-control" id="password" required minlength="6">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required minlength="6">
                 <div class="invalid-feedback">Password must be at least 6 characters.</div>
               </div>
-              <div class="col-md-6 mb-3"><label class="form-label">Confirm Password</label><input type="password"
-                  class="form-control" id="confirmPassword" required minlength="6">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" required minlength="6">
                 <div class="invalid-feedback">Passwords do not match.</div>
               </div>
             </div>
+
             <button type="button" class="btn btn-primary w-100" onclick="nextStep(event)">Next</button>
           </div>
 
           <!-- Step 2 -->
           <div id="step2" class="hidden">
-            <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control"
-                id="billingFullName" disabled></div>
-            <div class="mb-3"><label class="form-label">Country</label><input type="text" class="form-control"
-                value="Kenya" disabled></div>
-            <div class="mb-3"><label class="form-label">Address</label><input type="text" class="form-control"
-                id="address" required>
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="billingFullName" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Country</label>
+              <input type="text" class="form-control" value="Kenya" disabled>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" required>
               <div class="invalid-feedback">Please enter your address.</div>
             </div>
-            <div class="mb-3"><label class="form-label">Postal Code</label><input type="text" class="form-control"
-                id="postalCode" required pattern="[0-9]{5}">
+
+            <div class="mb-3">
+              <label class="form-label">Postal Code</label>
+              <input type="text" class="form-control" id="postalCode" required pattern="[0-9]{5}">
               <div class="invalid-feedback">Please enter a 5-digit postal code.</div>
             </div>
+
             <div class="mb-3">
               <label class="form-label">Payment Method</label>
               <select class="form-select" id="paymentMethod" required onchange="togglePaymentFields()">
@@ -275,38 +397,44 @@
               </select>
               <div class="invalid-feedback">Please select a payment method.</div>
             </div>
+
             <div class="mb-3 hidden" id="mpesaField">
               <label class="form-label">Mpesa Phone Number</label>
               <input type="tel" class="form-control" id="mpesaPhone" pattern="[0-9]{10}">
               <div class="invalid-feedback">Please enter a 10-digit Mpesa phone number.</div>
             </div>
+
             <div class="row hidden" id="bankFields">
-              <div class="col-md-6 mb-3"><label class="form-label">Bank Name</label><input type="text"
-                  class="form-control" id="bankName">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Bank Name</label>
+                <input type="text" class="form-control" id="bankName">
                 <div class="invalid-feedback">Please enter bank name.</div>
               </div>
-              <div class="col-md-6 mb-3"><label class="form-label">Account Number</label><input type="text"
-                  class="form-control" id="accountNumber">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Account Number</label>
+                <input type="text" class="form-control" id="accountNumber">
                 <div class="invalid-feedback">Please enter account number.</div>
               </div>
             </div>
+
             <div class="d-flex justify-content-between">
               <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
-              <button type="submit" class="btn btn-success" href="index.html">Complete Signup</button>
+              <button type="submit" class="btn btn-success">Complete Signup</button>
             </div>
           </div>
         </form>
       </div>
-      <div class="col-md-6 promo-container">
-        <div class="promo-header">
-          <h4>SmartWash Pro</h4>
-          <h6>MONTHLY</h6>
-          <h2>Kshs 0</h2>
-          <p>Then a charge of Kshs 5000 + applicable taxes</p>
+
+      <div class="col-12 col-md-6 promo-container px-3 mt-4 mt-md-0">
+        <div class="promo-header text-center text-md-start">
+          <h4 class="fw-bold">SmartWash Pro</h4>
+          <h6 class="text-light">MONTHLY</h6>
+          <h2 class="text-primary fw-bold">Kshs 0</h2>
+          <p class="text-light small">Then a charge of Kshs 5000 + applicable taxes</p>
         </div>
         <div class="promo-content">
           <p>Spend less time managing and more time growing your brand.</p>
-          <ul>
+          <ul class="list-unstyled">
             <li>Free for 7 days!</li>
             <li>All-in-one platform</li>
             <li>Get full access to SmartWash dashboard</li>
@@ -405,11 +533,13 @@
       }
 
       if (isValid) {
-        document.getElementById('step1').classList.add('hidden');
-        document.getElementById('step2').classList.remove('hidden');
-        document.getElementById('step1Indicator').classList.remove('active');
-        document.getElementById('step2Indicator').classList.add('active');
+        document.getElementById("step1").classList.add("hidden");
+        document.getElementById("step2").classList.remove("hidden");
+        // Update indicator styles
+        document.getElementById("step1Circle").classList.remove("active");
+        document.getElementById("step2Circle").classList.add("active");
         document.getElementById('billingFullName').value = document.getElementById('fullName').value;
+        document.getElementById('mpesaPhone').value = document.getElementById('phoneNumber').value;
       } else {
         form.classList.add('was-validated');
       }
@@ -491,11 +621,13 @@
       } else {
         e.preventDefault();
         alert('Sign up process initiated! Please check your email to verify.');
+
+        window.location.href = "index.html";
       }
     });
 
     // Redirect to index.html
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
 
     function clearErrors() {
       const invalidFeedbacks = document.getElementsByClassName('invalid-feedback');
@@ -507,6 +639,8 @@
         invalidInputs[0].classList.remove('is-invalid');
       }
     }
+
+
   </script>
 </body>
 

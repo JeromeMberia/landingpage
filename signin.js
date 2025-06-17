@@ -25,5 +25,5 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 		alert("Login successful!");
 	}
 	// Redirect to index.html
-    window.location.href = "index.html";
+   // window.location.href = "index.html";
 });
