@@ -1,647 +1,834 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SmartWash Signup</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			body,
+			html {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				overflow: auto;
+			}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartWash Signup</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body,
-    html {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: auto;
-    }
+			.container-fluid {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #f8f9fa;
+				padding: 0;
+			}
 
-    .container-fluid {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f8f9fa;
-      padding: 0;
-    }
+			.row {
+				width: 100%;
+				max-width: 1200px;
+			}
 
-    .row {
-      width: 100%;
-      max-width: 1200px;
-    }
+			.form-container {
+				/* padding: 80px 20px 20px 20px; */
+				/* Increased top padding to 80px for more space */
+				background-color: #fff;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				max-height: 550px;
+				overflow-y: auto;
+        padding: 1rem;
+			}
 
-    .form-container {
-      padding: 80px 20px 20px 20px;
-      /* Increased top padding to 80px for more space */
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      max-height: 550px;
-      overflow-y: auto;
-    }
+			.form-container h3 {
+				color: #1a3c5e;
+				font-weight: 600;
+				margin-bottom: 15px;
+				font-size: 1.5rem;
+			}
 
-    .form-container h3 {
-      color: #1a3c5e;
-      font-weight: 600;
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-    }
+			.form-container .step-indicator {
+				display: flex;
+				align-items: center;
+				margin-bottom: 20px;
+				font-size: 0.9rem;
+			}
 
-    .form-container .step-indicator {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      font-size: 0.9rem;
-    }
+			.step {
+				flex: 1;
+				text-align: center;
+				padding: 8px;
+				position: relative;
+				color: #6c757d;
+				font-weight: 500;
+			}
 
-    .step {
-      flex: 1;
-      text-align: center;
-      padding: 8px;
-      position: relative;
-      color: #6c757d;
-      font-weight: 500;
-    }
+			.step.active {
+				font-weight: 700;
+				color: #007bff;
+			}
 
-    .step.active {
-      font-weight: 700;
-      color: #007bff;
-    }
+			.step-line {
+				flex: 1;
+				height: 2px;
+				background-color: #dee2e6;
+			}
 
-    .step-line {
-      flex: 1;
-      height: 2px;
-      background-color: #dee2e6;
-    }
+			.form-control {
+				border-radius: 6px;
+				border-color: #ced4da;
+				padding: 8px;
+				font-size: 0.9rem;
+				transition: border-color 0.3s;
+			}
 
-    .form-control {
-      border-radius: 6px;
-      border-color: #ced4da;
-      padding: 8px;
-      font-size: 0.9rem;
-      transition: border-color 0.3s;
-    }
+			.form-control:focus {
+				border-color: #007bff;
+				box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+			}
 
-    .form-control:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-    }
+			.form-label {
+				font-weight: 500;
+				color: #1a3c5e;
+				margin-bottom: 5px;
+				font-size: 0.95rem;
+			}
 
-    .form-label {
-      font-weight: 500;
-      color: #1a3c5e;
-      margin-bottom: 5px;
-      font-size: 0.95rem;
-    }
+			.btn-primary {
+				background-color: #007bff;
+				border: none;
+				border-radius: 6px;
+				padding: 8px;
+				font-weight: 500;
+				transition: background-color 0.3s;
+			}
 
-    .btn-primary {
-      background-color: #007bff;
-      border: none;
-      border-radius: 6px;
-      padding: 8px;
-      font-weight: 500;
-      transition: background-color 0.3s;
-    }
+			.btn-primary:hover {
+				background-color: #0056b3;
+			}
 
-    .btn-primary:hover {
-      background-color: #0056b3;
-    }
+			.btn-secondary,
+			.btn-success {
+				border-radius: 6px;
+				padding: 8px;
+				font-weight: 500;
+			}
 
-    .btn-secondary,
-    .btn-success {
-      border-radius: 6px;
-      padding: 8px;
-      font-weight: 500;
-    }
+			.promo-container {
+				padding: 20px;
+				border-radius: 8px;
+				height: 80%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
 
-    .promo-container {
-      padding: 20px;
-      border-radius: 8px;
-      height: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+			.promo-header {
+				background-color: #1a3c5e;
+				color: white;
+				padding: 20px;
+				border-radius: 8px 8px 0 0;
+			}
 
-    .promo-header {
-      background-color: #1a3c5e;
-      color: white;
-      padding: 20px;
-      border-radius: 8px 8px 0 0;
-    }
+			.promo-header h4 {
+				color: #f1c40f;
+			}
 
-    .promo-header h4 {
-      color: #f1c40f;
-    }
+			.promo-content {
+				background-color: #fff;
+				color: #000;
+				padding: 20px;
+				border-radius: 0 0 8px 8px;
+			}
 
-    .promo-content {
-      background-color: #fff;
-      color: #000;
-      padding: 20px;
-      border-radius: 0 0 8px 8px;
-    }
+			.promo-content ul {
+				list-style-type: none;
+				padding-left: 0;
+			}
 
-    .promo-content ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
+			.promo-content ul li {
+				margin-bottom: 10px;
+			}
 
-    .promo-content ul li {
-      margin-bottom: 10px;
-    }
+			.promo-content ul li::before {
+				content: "✔";
+				color: #00bcd4;
+				margin-right: 10px;
+			}
 
-    .promo-content ul li::before {
-      content: "✔";
-      color: #00bcd4;
-      margin-right: 10px;
-    }
+			.step-indicator {
+				display: flex;
+				align-items: center;
+				margin-bottom: 0px;
+			}
 
-    .step-indicator {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0px;
-    }
+			.step {
+				flex: 1;
+				text-align: center;
+				padding: 10px;
+				position: relative;
+			}
 
-    .step {
-      flex: 1;
-      text-align: center;
-      padding: 10px;
-      position: relative;
-    }
+			#step1 {
+				margin-top: 10%;
+			}
 
-    #step1 {
-      margin-top: 10%;
-    }
+			.step.active {
+				font-weight: bold;
+				color: #007bff;
+			}
 
-    .step.active {
-      font-weight: bold;
-      color: #007bff;
-    }
+			.step-line {
+				height: 2px;
+				flex-grow: 1;
+				background-color: #ced4da;
+				align-self: center;
+				min-width: 30px;
+				max-width: 50px;
+			}
 
-    .step-line {
-      height: 2px;
-      flex-grow: 1;
-      background-color: #ced4da;
-      align-self: center;
-      min-width: 30px;
-      max-width: 50px;
-    }
+			.step-circle {
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				background-color: #dee2e6;
+				color: #495057;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 600;
+				font-size: 14px;
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
 
-    .step-circle {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background-color: #dee2e6;
-      color: #495057;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 14px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+			.step-circle.active {
+				background-color: #0d6efd;
+				/* Bootstrap Primary */
+				color: #fff;
+			}
 
-    .step-circle.active {
-      background-color: #0d6efd;
-      /* Bootstrap Primary */
-      color: #fff;
-    }
+			.step-label {
+				font-weight: 500;
+				font-size: 15px;
+				color: #343a40;
+			}
 
-    .step-label {
-      font-weight: 500;
-      font-size: 15px;
-      color: #343a40;
-    }
+			.hidden {
+				display: none;
+			}
 
-    .hidden {
-      display: none;
-    }
+			p {
+				font-weight: 600;
+			}
 
-    p {
-      font-weight: 600;
-    }
+			@media (max-width: 768px) {
+				.promo-container {
+					text-align: left;
+				}
 
-    @media (max-width: 768px) {
-      .promo-container {
-        text-align: left;
+				.step-indicator {
+					flex-direction: grid;
+					align-items: center;
+				}
+
+				#step1 {
+					margin-top: 0rem;
+					padding: 20px;
+				}
+
+				.step,
+				.step-line {
+					width: 100%;
+					text-align: center;
+				}
+
+				.form-container {
+					padding-left: 1rem;
+					padding-right: 1rem;
+				}
+
+				.promo-header h2 {
+					font-size: 1.8rem;
+				}
+
+				.promo-header h4 {
+					font-size: 1.2rem;
+				}
+			}
+
+			@media (max-width: 576px) {
+				.form-control,
+				.form-select {
+					font-size: 0.95rem;
+				}
+
+				.btn {
+					font-size: 0.9rem;
+				}
+
+				.step {
+					font-size: 0.9rem;
+					padding: 0.3rem 0.5rem;
+				}
+			}
+			.section {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: flex-start;
+				gap: 20px;
+        margin: 1rem;
+			}
+			.section .form-container {
+				padding-top: 1rem;
+        margin-bottom: 3rem;
+			}
+      #step1{
+        margin-top: 0;
       }
-
-      .step-indicator {
-        flex-direction: grid;
-        align-items: center;
+      .signupForm2{
+        padding: 1rem;
       }
+		</style>
+	</head>
 
-      #step1 {
-        margin-top: 50%;
-        padding: 20px;
-      }
+	<body>
+		<div class="container-fluid py-4 px-3">
+			<div class="row w-100 h-100 g-4">
+				<!-- nav -->
+				<div
+					class="col-12 text-center mb-4 align-items-center d-flex flex-column"
+				>
+					<a href="./index.html" style="text-decoration: none">
+						<img src="img/logo.png" alt="SmartWash Logo" height="40" />
+						<h3 class="mt-2 fw-bold">SmartWash Signup</h3>
+					</a>
+				</div>
 
+				<!-- Step Indicator -->
+				<div
+					class="step-indicator col-12 d-flex flex-wrap justify-content-center justify-content-md-center align-items-center mb-4"
+				>
+					<div class="step-item d-flex align-items-center me-3">
+						<div id="step1Circle" class="step-circle active">1</div>
+						<span id="step1Text" class="step-label ms-2">Create Profile</span>
+					</div>
 
-      .step,
-      .step-line {
-        width: 100%;
-        text-align: center;
-      }
+					<div class="step-line mx-2"></div>
 
-      .form-container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
+					<div class="step-item d-flex align-items-center">
+						<div id="step2Circle" class="step-circle">2</div>
+						<span id="step2Text" class="step-label ms-2"
+							>Billing & Payment</span
+						>
+					</div>
+				</div>
+				<div class="section">
+					<!-- form -->
+					<div
+						class="col-12 col-md-6 form-container px-2 d-flex flex-column justify-content-start "
+					>
+						<!-- Signup Form -->
+						<form id="signupForm" novalidate>
+							<!-- Step 1 -->
+							<div id="step1">
+								<div class="mb-3">
+									<label class="form-label">Full Name</label>
+									<input
+										type="text"
+										class="form-control"
+										id="fullName"
+										required
+									/>
+									<div class="invalid-feedback"
+										>Please enter your full name.</div
+									>
+								</div>
 
-      .promo-header h2 {
-        font-size: 1.8rem;
-      }
+								<div class="mb-3">
+									<label class="form-label">Email</label>
+									<input
+										type="email"
+										class="form-control"
+										id="email"
+										required
+										pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									/>
+									<div class="invalid-feedback"
+										>Please enter a valid email address.</div
+									>
+								</div>
 
-      .promo-header h4 {
-        font-size: 1.2rem;
-      }
-    }
+								<div class="mb-3">
+									<label class="form-label">Phone Number</label>
+									<input
+										type="tel"
+										class="form-control"
+										id="phoneNumber"
+										required
+										pattern="[0-9]{10}"
+									/>
+									<div class="invalid-feedback"
+										>Please enter a 10-digit phone number.</div
+									>
+								</div>
 
-    @media (max-width: 576px) {
+								<div class="mb-3">
+									<label class="form-label">Business Name</label>
+									<input
+										type="text"
+										class="form-control"
+										id="businessName"
+										required
+									/>
+									<div class="invalid-feedback"
+										>Please enter your business name.</div
+									>
+								</div>
 
-      .form-control,
-      .form-select {
-        font-size: 0.95rem;
-      }
+								<div class="mb-3">
+									<label class="form-label">Business Type</label>
+									<select class="form-select" id="businessType" required>
+										<option value="">Select</option>
+										<option>Car Wash Service</option>
+										<option>Laundry Service</option>
+										<option>Both</option>
+									</select>
+									<div class="invalid-feedback"
+										>Please select a business type.</div
+									>
+								</div>
 
-      .btn {
-        font-size: 0.9rem;
-      }
+								<div class="mb-3">
+									<label class="form-label">Location</label>
+									<input
+										type="text"
+										class="form-control"
+										id="location"
+										required
+									/>
+									<div class="invalid-feedback"
+										>Please enter your location.</div
+									>
+								</div>
 
-      .step {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.5rem;
-      }
-    }
-  </style>
-</head>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Password</label>
+										<input
+											type="password"
+											class="form-control"
+											id="password"
+											required
+											minlength="6"
+										/>
+										<div class="invalid-feedback"
+											>Password must be at least 6 characters.</div
+										>
+									</div>
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Confirm Password</label>
+										<input
+											type="password"
+											class="form-control"
+											id="confirmPassword"
+											required
+											minlength="6"
+										/>
+										<div class="invalid-feedback">Passwords do not match.</div>
+									</div>
+								</div>
 
-<body>
-  <div class="container-fluid py-4 px-3">
-    <div class="row w-100 h-100 g-4">
-      <div class="col-12text-center mb-4 align-items-center d-flex flex-column">
-        <img src="img/logo.png" alt="SmartWash Logo" height="40">
-        <h3 class="mt-2 fw-bold">SmartWash Signup</h3>
-      </div>
+								<button
+									type="button"
+									class="btn btn-primary w-100 mt-5"
+									onclick="nextStep(event)"
+									>Next</button
+								>
+							</div>
 
-      <!-- Step Indicator -->
-      <div
-        class="step-indicator col-12 d-flex flex-wrap justify-content-center justify-content-md-start align-items-center mb-4">
-        <div class="step-item d-flex align-items-center me-3">
-          <div id="step1Circle" class="step-circle active">1</div>
-          <span id="step1Text" class="step-label ms-2">Create Profile</span>
-        </div>
+							<!-- Step 2 -->
+							<div id="step2" class="hidden">
+								<div class="mb-3">
+									<label class="form-label">Full Name</label>
+									<input
+										type="text"
+										class="form-control"
+										id="billingFullName"
+										required
+									/>
+								</div>
 
-        <div class="step-line mx-2"></div>
+								<div class="mb-3">
+									<label class="form-label">Country</label>
+									<input
+										type="text"
+										class="form-control"
+										value="Kenya"
+										disabled
+									/>
+								</div>
 
-        <div class="step-item d-flex align-items-center">
-          <div id="step2Circle" class="step-circle">2</div>
-          <span id="step2Text" class="step-label ms-2">Billing & Payment</span>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 form-container px-2 d-flex flex-column justify-content-center">
+								<div class="mb-3">
+									<label class="form-label">Address</label>
+									<input
+										type="text"
+										class="form-control"
+										id="address"
+										required
+									/>
+									<div class="invalid-feedback">Please enter your address.</div>
+								</div>
 
+								<div class="mb-3">
+									<label class="form-label">Postal Code</label>
+									<input
+										type="text"
+										class="form-control"
+										id="postalCode"
+										required
+										pattern="[0-9]{5}"
+									/>
+									<div class="invalid-feedback"
+										>Please enter a 5-digit postal code.</div
+									>
+								</div>
 
+								<div class="mb-3">
+									<label class="form-label">Payment Method</label>
+									<select
+										class="form-select"
+										id="paymentMethod"
+										required
+										onchange="togglePaymentFields()"
+									>
+										<option value="">Select</option>
+										<option value="mpesa">Mpesa</option>
+										<option value="bank">Bank Transfer</option>
+									</select>
+									<div class="invalid-feedback"
+										>Please select a payment method.</div
+									>
+								</div>
 
-        <!-- Signup Form -->
-        <form id="signupForm" novalidate>
-          <!-- Step 1 -->
-          <div id="step1">
-            <div class="mb-3">
-              <label class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="fullName" required>
-              <div class="invalid-feedback">Please enter your full name.</div>
-            </div>
+								<div class="mb-3 hidden" id="mpesaField">
+									<label class="form-label">Mpesa Phone Number</label>
+									<input
+										type="tel"
+										class="form-control"
+										id="mpesaPhone"
+										pattern="[0-9]{10}"
+									/>
+									<div class="invalid-feedback"
+										>Please enter a 10-digit Mpesa phone number.</div
+									>
+								</div>
 
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-              <div class="invalid-feedback">Please enter a valid email address.</div>
-            </div>
+								<div class="row hidden" id="bankFields">
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Bank Name</label>
+										<input type="text" class="form-control" id="bankName" />
+										<div class="invalid-feedback">Please enter bank name.</div>
+									</div>
+									<div class="col-md-6 mb-3">
+										<label class="form-label">Account Number</label>
+										<input
+											type="text"
+											class="form-control"
+											id="accountNumber"
+										/>
+										<div class="invalid-feedback"
+											>Please enter account number.</div
+										>
+									</div>
+								</div>
 
-            <div class="mb-3">
-              <label class="form-label">Phone Number</label>
-              <input type="tel" class="form-control" id="phoneNumber" required pattern="[0-9]{10}">
-              <div class="invalid-feedback">Please enter a 10-digit phone number.</div>
-            </div>
+								<div class="d-flex justify-content-between">
+									<button
+										type="button"
+										class="btn btn-secondary"
+										onclick="prevStep()"
+										>Back</button
+									>
+									<button type="submit" class="btn btn-success"
+										>Complete Signup</button
+									>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- detail -->
+					<div class="col-12 col-md-6 promo-container px-3 mt-4 mt-md-0">
+						<div class="promo-header text-center text-md-start">
+							<h4 class="fw-bold">SmartWash Pro</h4>
+							<h6 class="text-light">MONTHLY</h6>
+							<h2 class="text-primary fw-bold">Kshs 0</h2>
+							<p class="text-light small"
+								>Then a charge of Kshs 5000 + applicable taxes</p
+							>
+						</div>
+						<div class="promo-content">
+							<p>Spend less time managing and more time growing your brand.</p>
+							<ul class="list-unstyled">
+								<li>Free for 7 days!</li>
+								<li>All-in-one platform</li>
+								<li>Get full access to SmartWash dashboard</li>
+								<li>Real-Time Reports to Track Performance</li>
+								<li>24/7 online support from our Help Team</li>
+								<li>Support for teams and multi-location businesses</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script>
+			// Enable Bootstrap validation styles
+			(function () {
+				"use strict";
+				window.addEventListener(
+					"load",
+					function () {
+						var forms = document.getElementsByClassName("needs-validation");
+						var validation = Array.prototype.filter.call(
+							forms,
+							function (form) {
+								form.addEventListener(
+									"submit",
+									function (event) {
+										if (form.checkValidity() === false) {
+											event.preventDefault();
+											event.stopPropagation();
+											validateStep2();
+										}
+										form.classList.add("was-validated");
+									},
+									false
+								);
+							}
+						);
+					},
+					false
+				);
+			})();
 
-            <div class="mb-3">
-              <label class="form-label">Business Name</label>
-              <input type="text" class="form-control" id="businessName" required>
-              <div class="invalid-feedback">Please enter your business name.</div>
-            </div>
+			// Custom validation for Step 1 and Step 2
+			function nextStep(event) {
+				event.preventDefault(); // Prevent any default behavior
+				const form = document.getElementById("signupForm");
+				const password = document.getElementById("password").value;
+				const confirmPassword =
+					document.getElementById("confirmPassword").value;
+				const email = document.getElementById("email").value;
+				const phoneNumber = document.getElementById("phoneNumber").value;
 
-            <div class="mb-3">
-              <label class="form-label">Business Type</label>
-              <select class="form-select" id="businessType" required>
-                <option value="">Select</option>
-                <option>Car Wash Service</option>
-                <option>Laundry Service</option>
-                <option>Both</option>
-              </select>
-              <div class="invalid-feedback">Please select a business type.</div>
-            </div>
+				// Reset validation feedback
+				form.classList.remove("was-validated");
+				clearErrors();
 
-            <div class="mb-3">
-              <label class="form-label">Location</label>
-              <input type="text" class="form-control" id="location" required>
-              <div class="invalid-feedback">Please enter your location.</div>
-            </div>
+				// Validate all required fields in Step 1
+				let isValid = true;
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required minlength="6">
-                <div class="invalid-feedback">Password must be at least 6 characters.</div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" required minlength="6">
-                <div class="invalid-feedback">Passwords do not match.</div>
-              </div>
-            </div>
+				if (!document.getElementById("fullName").value) {
+					document.getElementById("fullName").classList.add("is-invalid");
+					document.querySelector("#fullName + .invalid-feedback").textContent =
+						"Please enter your full name.";
+					isValid = false;
+				}
 
-            <button type="button" class="btn btn-primary w-100" onclick="nextStep(event)">Next</button>
-          </div>
+				const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+				if (!email || !emailPattern.test(email)) {
+					document.getElementById("email").classList.add("is-invalid");
+					document.querySelector("#email + .invalid-feedback").textContent =
+						"Please enter a valid email address.";
+					isValid = false;
+				}
 
-          <!-- Step 2 -->
-          <div id="step2" class="hidden">
-            <div class="mb-3">
-              <label class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="billingFullName" required>
-            </div>
+				const phonePattern = /^[0-9]{10}$/;
+				if (!phoneNumber || !phonePattern.test(phoneNumber)) {
+					document.getElementById("phoneNumber").classList.add("is-invalid");
+					document.querySelector(
+						"#phoneNumber + .invalid-feedback"
+					).textContent = "Please enter a 10-digit phone number.";
+					isValid = false;
+				}
 
-            <div class="mb-3">
-              <label class="form-label">Country</label>
-              <input type="text" class="form-control" value="Kenya" disabled>
-            </div>
+				if (!document.getElementById("businessName").value) {
+					document.getElementById("businessName").classList.add("is-invalid");
+					document.querySelector(
+						"#businessName + .invalid-feedback"
+					).textContent = "Please enter your business name.";
+					isValid = false;
+				}
 
-            <div class="mb-3">
-              <label class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" required>
-              <div class="invalid-feedback">Please enter your address.</div>
-            </div>
+				if (!document.getElementById("businessType").value) {
+					document.getElementById("businessType").classList.add("is-invalid");
+					document.querySelector(
+						"#businessType + .invalid-feedback"
+					).textContent = "Please select a business type.";
+					isValid = false;
+				}
 
-            <div class="mb-3">
-              <label class="form-label">Postal Code</label>
-              <input type="text" class="form-control" id="postalCode" required pattern="[0-9]{5}">
-              <div class="invalid-feedback">Please enter a 5-digit postal code.</div>
-            </div>
+				if (!document.getElementById("location").value) {
+					document.getElementById("location").classList.add("is-invalid");
+					document.querySelector("#location + .invalid-feedback").textContent =
+						"Please enter your location.";
+					isValid = false;
+				}
 
-            <div class="mb-3">
-              <label class="form-label">Payment Method</label>
-              <select class="form-select" id="paymentMethod" required onchange="togglePaymentFields()">
-                <option value="">Select</option>
-                <option value="mpesa">Mpesa</option>
-                <option value="bank">Bank Transfer</option>
-              </select>
-              <div class="invalid-feedback">Please select a payment method.</div>
-            </div>
+				if (!password || password.length < 6) {
+					document.getElementById("password").classList.add("is-invalid");
+					document.querySelector("#password + .invalid-feedback").textContent =
+						"Password must be at least 6 characters.";
+					isValid = false;
+				}
 
-            <div class="mb-3 hidden" id="mpesaField">
-              <label class="form-label">Mpesa Phone Number</label>
-              <input type="tel" class="form-control" id="mpesaPhone" pattern="[0-9]{10}">
-              <div class="invalid-feedback">Please enter a 10-digit Mpesa phone number.</div>
-            </div>
+				if (password !== confirmPassword || !confirmPassword) {
+					document
+						.getElementById("confirmPassword")
+						.classList.add("is-invalid");
+					document.querySelector(
+						"#confirmPassword + .invalid-feedback"
+					).textContent = "Passwords do not match.";
+					isValid = false;
+				}
 
-            <div class="row hidden" id="bankFields">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Bank Name</label>
-                <input type="text" class="form-control" id="bankName">
-                <div class="invalid-feedback">Please enter bank name.</div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Account Number</label>
-                <input type="text" class="form-control" id="accountNumber">
-                <div class="invalid-feedback">Please enter account number.</div>
-              </div>
-            </div>
+				if (isValid) {
+					document.getElementById("step1").classList.add("hidden");
+					document.getElementById("step2").classList.remove("hidden");
+					// Update indicator styles
+					document.getElementById("step1Circle").classList.remove("active");
+					document.getElementById("step2Circle").classList.add("active");
+					document.getElementById("billingFullName").value =
+						document.getElementById("fullName").value;
+					document.getElementById("mpesaPhone").value =
+						document.getElementById("phoneNumber").value;
+				} else {
+					form.classList.add("was-validated");
+				}
+			}
 
-            <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
-              <button type="submit" class="btn btn-success">Complete Signup</button>
-            </div>
-          </div>
-        </form>
-      </div>
+			function prevStep() {
+				document.getElementById("step2").classList.add("hidden");
+				document.getElementById("step1").classList.remove("hidden");
+				document.getElementById("step2Indicator").classList.remove("active");
+				document.getElementById("step1Indicator").classList.add("active");
+			}
 
-      <div class="col-12 col-md-6 promo-container px-3 mt-4 mt-md-0">
-        <div class="promo-header text-center text-md-start">
-          <h4 class="fw-bold">SmartWash Pro</h4>
-          <h6 class="text-light">MONTHLY</h6>
-          <h2 class="text-primary fw-bold">Kshs 0</h2>
-          <p class="text-light small">Then a charge of Kshs 5000 + applicable taxes</p>
-        </div>
-        <div class="promo-content">
-          <p>Spend less time managing and more time growing your brand.</p>
-          <ul class="list-unstyled">
-            <li>Free for 7 days!</li>
-            <li>All-in-one platform</li>
-            <li>Get full access to SmartWash dashboard</li>
-            <li>Real-Time Reports to Track Performance</li>
-            <li>24/7 online support from our Help Team</li>
-            <li>Support for teams and multi-location businesses</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Enable Bootstrap validation styles
-    (function () {
-      'use strict';
-      window.addEventListener('load', function () {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function (form) {
-          form.addEventListener('submit', function (event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-              validateStep2();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
+			function togglePaymentFields() {
+				const paymentMethod = document.getElementById("paymentMethod").value;
+				document.getElementById("mpesaField").classList.add("hidden");
+				document.getElementById("bankFields").classList.add("hidden");
+				if (paymentMethod === "mpesa") {
+					document.getElementById("mpesaField").classList.remove("hidden");
+				} else if (paymentMethod === "bank") {
+					document.getElementById("bankFields").classList.remove("hidden");
+				}
+			}
 
-    // Custom validation for Step 1 and Step 2
-    function nextStep(event) {
-      event.preventDefault(); // Prevent any default behavior
-      const form = document.getElementById('signupForm');
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-      const email = document.getElementById('email').value;
-      const phoneNumber = document.getElementById('phoneNumber').value;
+			function validateStep2() {
+				const form = document.getElementById("signupForm");
+				const paymentMethod = document.getElementById("paymentMethod").value;
+				const mpesaPhone = document.getElementById("mpesaPhone").value;
+				const bankName = document.getElementById("bankName").value;
+				const accountNumber = document.getElementById("accountNumber").value;
 
-      // Reset validation feedback
-      form.classList.remove('was-validated');
-      clearErrors();
+				// Reset validation feedback
+				form.classList.remove("was-validated");
+				clearErrors();
 
-      // Validate all required fields in Step 1
-      let isValid = true;
+				let isValid = true;
 
-      if (!document.getElementById('fullName').value) {
-        document.getElementById('fullName').classList.add('is-invalid');
-        document.querySelector('#fullName + .invalid-feedback').textContent = 'Please enter your full name.';
-        isValid = false;
-      }
+				if (!document.getElementById("address").value) {
+					document.getElementById("address").classList.add("is-invalid");
+					document.querySelector("#address + .invalid-feedback").textContent =
+						"Please enter your address.";
+					isValid = false;
+				}
 
-      const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-      if (!email || !emailPattern.test(email)) {
-        document.getElementById('email').classList.add('is-invalid');
-        document.querySelector('#email + .invalid-feedback').textContent = 'Please enter a valid email address.';
-        isValid = false;
-      }
+				const postalPattern = /^[0-9]{5}$/;
+				if (
+					!document.getElementById("postalCode").value ||
+					!postalPattern.test(document.getElementById("postalCode").value)
+				) {
+					document.getElementById("postalCode").classList.add("is-invalid");
+					document.querySelector(
+						"#postalCode + .invalid-feedback"
+					).textContent = "Please enter a 5-digit postal code.";
+					isValid = false;
+				}
 
-      const phonePattern = /^[0-9]{10}$/;
-      if (!phoneNumber || !phonePattern.test(phoneNumber)) {
-        document.getElementById('phoneNumber').classList.add('is-invalid');
-        document.querySelector('#phoneNumber + .invalid-feedback').textContent = 'Please enter a 10-digit phone number.';
-        isValid = false;
-      }
+				if (!paymentMethod) {
+					document.getElementById("paymentMethod").classList.add("is-invalid");
+					document.querySelector(
+						"#paymentMethod + .invalid-feedback"
+					).textContent = "Please select a payment method.";
+					isValid = false;
+				} else if (
+					paymentMethod === "mpesa" &&
+					!/^[0-9]{10}$/.test(mpesaPhone)
+				) {
+					document.getElementById("mpesaPhone").classList.add("is-invalid");
+					document.querySelector(
+						"#mpesaPhone + .invalid-feedback"
+					).textContent = "Please enter a 10-digit Mpesa phone number.";
+					isValid = false;
+				} else if (paymentMethod === "bank" && (!bankName || !accountNumber)) {
+					if (!bankName) {
+						document.getElementById("bankName").classList.add("is-invalid");
+						document.querySelector(
+							"#bankName + .invalid-feedback"
+						).textContent = "Please enter bank name.";
+						isValid = false;
+					}
+					if (!accountNumber) {
+						document
+							.getElementById("accountNumber")
+							.classList.add("is-invalid");
+						document.querySelector(
+							"#accountNumber + .invalid-feedback"
+						).textContent = "Please enter account number.";
+						isValid = false;
+					}
+				}
 
-      if (!document.getElementById('businessName').value) {
-        document.getElementById('businessName').classList.add('is-invalid');
-        document.querySelector('#businessName + .invalid-feedback').textContent = 'Please enter your business name.';
-        isValid = false;
-      }
+				return isValid;
+			}
 
-      if (!document.getElementById('businessType').value) {
-        document.getElementById('businessType').classList.add('is-invalid');
-        document.querySelector('#businessType + .invalid-feedback').textContent = 'Please select a business type.';
-        isValid = false;
-      }
+			document
+				.getElementById("signupForm")
+				.addEventListener("submit", function (e) {
+					const form = this;
+					if (!validateStep2()) {
+						e.preventDefault();
+						form.classList.add("was-validated");
+					} else {
+						e.preventDefault();
+						alert(
+							"Sign up process initiated! Please check your email to verify."
+						);
 
-      if (!document.getElementById('location').value) {
-        document.getElementById('location').classList.add('is-invalid');
-        document.querySelector('#location + .invalid-feedback').textContent = 'Please enter your location.';
-        isValid = false;
-      }
+						window.location.href = "index.html";
+					}
+				});
 
-      if (!password || password.length < 6) {
-        document.getElementById('password').classList.add('is-invalid');
-        document.querySelector('#password + .invalid-feedback').textContent = 'Password must be at least 6 characters.';
-        isValid = false;
-      }
+			// Redirect to index.html
+			//window.location.href = "index.html";
 
-      if (password !== confirmPassword || !confirmPassword) {
-        document.getElementById('confirmPassword').classList.add('is-invalid');
-        document.querySelector('#confirmPassword + .invalid-feedback').textContent = 'Passwords do not match.';
-        isValid = false;
-      }
-
-      if (isValid) {
-        document.getElementById("step1").classList.add("hidden");
-        document.getElementById("step2").classList.remove("hidden");
-        // Update indicator styles
-        document.getElementById("step1Circle").classList.remove("active");
-        document.getElementById("step2Circle").classList.add("active");
-        document.getElementById('billingFullName').value = document.getElementById('fullName').value;
-        document.getElementById('mpesaPhone').value = document.getElementById('phoneNumber').value;
-      } else {
-        form.classList.add('was-validated');
-      }
-    }
-
-    function prevStep() {
-      document.getElementById('step2').classList.add('hidden');
-      document.getElementById('step1').classList.remove('hidden');
-      document.getElementById('step2Indicator').classList.remove('active');
-      document.getElementById('step1Indicator').classList.add('active');
-    }
-
-    function togglePaymentFields() {
-      const paymentMethod = document.getElementById('paymentMethod').value;
-      document.getElementById('mpesaField').classList.add('hidden');
-      document.getElementById('bankFields').classList.add('hidden');
-      if (paymentMethod === 'mpesa') {
-        document.getElementById('mpesaField').classList.remove('hidden');
-      } else if (paymentMethod === 'bank') {
-        document.getElementById('bankFields').classList.remove('hidden');
-      }
-    }
-
-    function validateStep2() {
-      const form = document.getElementById('signupForm');
-      const paymentMethod = document.getElementById('paymentMethod').value;
-      const mpesaPhone = document.getElementById('mpesaPhone').value;
-      const bankName = document.getElementById('bankName').value;
-      const accountNumber = document.getElementById('accountNumber').value;
-
-      // Reset validation feedback
-      form.classList.remove('was-validated');
-      clearErrors();
-
-      let isValid = true;
-
-      if (!document.getElementById('address').value) {
-        document.getElementById('address').classList.add('is-invalid');
-        document.querySelector('#address + .invalid-feedback').textContent = 'Please enter your address.';
-        isValid = false;
-      }
-
-      const postalPattern = /^[0-9]{5}$/;
-      if (!document.getElementById('postalCode').value || !postalPattern.test(document.getElementById('postalCode').value)) {
-        document.getElementById('postalCode').classList.add('is-invalid');
-        document.querySelector('#postalCode + .invalid-feedback').textContent = 'Please enter a 5-digit postal code.';
-        isValid = false;
-      }
-
-      if (!paymentMethod) {
-        document.getElementById('paymentMethod').classList.add('is-invalid');
-        document.querySelector('#paymentMethod + .invalid-feedback').textContent = 'Please select a payment method.';
-        isValid = false;
-      } else if (paymentMethod === 'mpesa' && !/^[0-9]{10}$/.test(mpesaPhone)) {
-        document.getElementById('mpesaPhone').classList.add('is-invalid');
-        document.querySelector('#mpesaPhone + .invalid-feedback').textContent = 'Please enter a 10-digit Mpesa phone number.';
-        isValid = false;
-      } else if (paymentMethod === 'bank' && (!bankName || !accountNumber)) {
-        if (!bankName) {
-          document.getElementById('bankName').classList.add('is-invalid');
-          document.querySelector('#bankName + .invalid-feedback').textContent = 'Please enter bank name.';
-          isValid = false;
-        }
-        if (!accountNumber) {
-          document.getElementById('accountNumber').classList.add('is-invalid');
-          document.querySelector('#accountNumber + .invalid-feedback').textContent = 'Please enter account number.';
-          isValid = false;
-        }
-      }
-
-      return isValid;
-    }
-
-    document.getElementById('signupForm').addEventListener('submit', function (e) {
-      const form = this;
-      if (!validateStep2()) {
-        e.preventDefault();
-        form.classList.add('was-validated');
-      } else {
-        e.preventDefault();
-        alert('Sign up process initiated! Please check your email to verify.');
-
-        window.location.href = "index.html";
-      }
-    });
-
-    // Redirect to index.html
-    //window.location.href = "index.html";
-
-    function clearErrors() {
-      const invalidFeedbacks = document.getElementsByClassName('invalid-feedback');
-      for (let feedback of invalidFeedbacks) {
-        feedback.textContent = '';
-      }
-      const invalidInputs = document.getElementsByClassName('is-invalid');
-      while (invalidInputs.length > 0) {
-        invalidInputs[0].classList.remove('is-invalid');
-      }
-    }
-
-
-  </script>
-</body>
-
+			function clearErrors() {
+				const invalidFeedbacks =
+					document.getElementsByClassName("invalid-feedback");
+				for (let feedback of invalidFeedbacks) {
+					feedback.textContent = "";
+				}
+				const invalidInputs = document.getElementsByClassName("is-invalid");
+				while (invalidInputs.length > 0) {
+					invalidInputs[0].classList.remove("is-invalid");
+				}
+			}
+		</script>
+	</body>
 </html>

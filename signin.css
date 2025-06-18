@@ -162,7 +162,8 @@ button {
 	/* margin: 0; */
 	/* vertical-align: middle;
     paddin */
-	padding-top: 15px;
+	/* padding-top: 15px; */
+	padding-inline: auto;
 	font-size: 1rem;
 	/* height: 100%; */
 	/* font-size: 100px; */
@@ -189,5 +190,26 @@ button {
 
 	.right-panel {
 		display: none;
+	}
+}
+
+.form-check{
+	padding-left: 0;
+	gap:0.5rem;
+}
+.the-links{
+	text-decoration: underline;
+}
+
+@media (max-width: 448px) {
+	
+	input {
+		height: 44px;
+	}
+	button{
+		height: 46px;
+	}
+	section .left-panel{
+		padding-inline: 0.5rem;
 	}
 }
