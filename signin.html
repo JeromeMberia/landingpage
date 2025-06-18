@@ -9,16 +9,18 @@
   <link rel="stylesheet" href="signin.css">
 </head>
 
-<body class="bg-light">
-  <main class="container my-5 shadow-lg rounded-4 overflow-hidden">
+<body class="">
+  <main class="overflow-hidden" style="height: 100dvh;">
     <div class="row g-0">
 
       <!-- Left Panel -->
       <section class="left-panel col-12 col-md-6 p-5 bg-white">
-        <div class="d-flex justify-content-center align-items-center mb-4">
-          <nav class="logo d-flex align-items-center">
-            <img style="width: 3rem;" src="img/logo.png" alt="Smart Wash Logo" class="me-2" />
-            <span class="word fs-4 fw-bold">SmartWash</span>
+        <div class="d-flex justify-content-start align-items-center mb-4">
+          <nav class="logo d-flex align-items-start justify-content-start">
+            <a href="./index.html" style="text-decoration: none;" class="d-flex align-items-center justify-content-start">
+              <img style="width: 3rem;" src="img/logo.png" alt="Smart Wash Logo" class="me-2" />
+              <span class="word fs-4 fw-bold">SmartWash</span>
+            </a>
           </nav>
         </div>
 
@@ -29,13 +31,13 @@
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" id="email" class="form-control" placeholder="you@yourbusiness.com" required />
-            <small id="emailError" class="error text-danger"></small>
+            <small id="emailError" class="error text-danger" style="height: 1rem;"></small>
           </div>
 
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" id="password" class="form-control" placeholder="Enter your password" required />
-            <small id="passwordError" class="error text-danger"></small>
+            <small id="passwordError" class="error text-danger" style="height: 1rem;"></small>
           </div>
 
           <div class="d-flex justify-content-between align-items-center mb-3 options">
@@ -43,7 +45,7 @@
               <input class="form-check-input" type="checkbox" id="Remember" name="Remember">
               <label class="form-check-label" for="Remember">Remember me</label>
             </div>
-            <a href="#" class="text-decoration-none">Forgot your password?</a>
+            <a href="#" class="text-decoration-none the-links">Forgot your password?</a>
           </div>
 
           <div class="d-grid">
@@ -51,7 +53,7 @@
           </div>
 
           <p class="footer-text text-center mt-4">
-            Don’t have an account? <a href="signup.html">Create an account</a>
+            Don’t have an account? <a href="signup.html" class="the-links">Create an account</a>
           </p>
         </form>
       </section>
